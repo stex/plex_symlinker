@@ -32,7 +32,7 @@ module Plex
       end
 
       def album_artist
-        tags["aART"]
+        tags["aART"] || tags["©ART"]
       end
 
       def symlink_file_name

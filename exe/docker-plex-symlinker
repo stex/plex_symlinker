@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker run -it -v "$1":/app/source -v "$2":/app/target --env VIRTUAL_FILES_DIRECTORY="$1" symlinker

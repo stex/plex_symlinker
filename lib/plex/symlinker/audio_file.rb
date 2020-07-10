@@ -48,7 +48,19 @@ module Plex
         "#{relative_symlink_dir}/#{symlink_file_name}"
       end
 
-      def symlink!(base_dir)
+      def source_dir
+        File.dirname(path)
+      end
+
+      #
+      # @param [String] target_dir The actual target the symlink will be created in (will be extended
+      #   with the relative path of course)
+      # @param [String] virtual_source_dir
+      #   Can be used if the symlink should point to a different directory than the one used in
+      #   +path+. Useful for docker usage when the mounted directory doesn't match the actual one.
+      #   If given,
+      #
+      def symlink!(target_dir, virtual_source_dir: source_dir)
         FileUtils.mkdir_p(File.join(base_dir, relative_symlink_dir))
         File.symlink(path, File.join(base_dir, relative_symlink_path))
       end

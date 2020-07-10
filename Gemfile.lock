@@ -3,6 +3,8 @@ PATH
   specs:
     plex-symlinker (0.1.0)
       activesupport (~> 6.0)
+      ruby-progressbar
+      slop
       taglib-ruby
 
 GEM
@@ -59,6 +61,7 @@ GEM
     rubocop-performance (1.6.1)
       rubocop (>= 0.71.0)
     ruby-progressbar (1.10.1)
+    slop (4.8.2)
     standard (0.4.7)
       rubocop (~> 0.85.0)
       rubocop-performance (~> 1.6.0)

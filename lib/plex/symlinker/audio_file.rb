@@ -32,7 +32,7 @@ module Plex
       end
 
       def album_artist
-        tags["----:com.apple.iTunes:ALBUM ARTIST"] || tags["aART"]
+        tags["aART"]
       end
 
       def symlink_file_name

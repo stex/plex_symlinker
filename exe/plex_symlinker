@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "plex/symlinker"
+require "optparse"
+
+
+options = {}
+
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: #{File.basename(__FILE__)} [options]"
+
+  opts.on("-i", "--source-directory SOURCE_DIRECTORY", "Directory your audio files are in") do |dir|
+    options[:source_directory] = dir
+  end
+
+  opts.on("-t", "--target-directory TARGET", "Directory to place the symlink structure in") do |dir|
+    options[:symlink_basedir] = dir
+  end
+end
+
+parser.parse!
+
+if options[:source_directory].nil? || options[:symlink_basedir].nil?
+  fail ArgumentError, "Please specify both source and target directory"
+end
+
+puts options.inspect
+
+Plex::Symlinker.load_dir(options[:source_directory]).each { |f| f.symlink!(options[:symlink_basedir]) }
+

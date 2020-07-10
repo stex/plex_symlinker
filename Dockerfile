@@ -3,9 +3,7 @@ FROM ruby:slim
 RUN apt-get update && \
         apt-get install -y libtag1-dev libtag-extras-dev g++ make
 
-ENV WORKDIR /app
-
-WORKDIR $WORKDIR
+WORKDIR /app
 
 COPY ./lib/plex/symlinker/version.rb ./lib/plex/symlinker/version.rb
 COPY ./Gemfile* ./
@@ -15,4 +13,4 @@ RUN bundle install
 
 COPY ./ ./
 
-CMD ["sh", "-c", "bundle", "exec", "${WORKDIR}/exe/plex-symlinker", "${WORKDIR}/source", "${WORKDIR}/target"]
+CMD ["bundle", "exec", "/app/exe/plex-symlinker", "/app/source", "/app/target"]

@@ -15,4 +15,4 @@ RUN bundle install
 
 COPY ./ ./
 
-CMD ["bundle", "exec", "$WORKDIR/exe/plex-symlinker", "$WORKDIR/source", "$WORKDIR/target"]
+CMD ["sh" "-c" "bundle", "exec", "${WORKDIR}/exe/plex-symlinker", "${WORKDIR}/source", "${WORKDIR}/target"]

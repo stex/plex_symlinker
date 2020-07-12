@@ -13,4 +13,4 @@ RUN bundle install
 
 COPY ./ ./
 
-CMD ["bundle", "exec", "/app/exe/plex-symlinker", "/app/source", "/app/target"]
+CMD ["bundle", "exec", "exe/plex-symlinker", "/app/source", "/app/target", "--virtual-files-directory=${$VIRTUAL_FILES_DIRECTORY}"]

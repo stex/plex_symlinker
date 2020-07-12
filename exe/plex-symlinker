@@ -5,7 +5,7 @@ require "plex/symlinker"
 require "slop"
 
 opts = Slop.parse do |o|
-  o.string "--virtual-files-directory", "Overrides the base source directory in the generated symlinks", default: ENV["VIRTUAL_FILES_DIRECTORY"]
+  o.string "--virtual-files-directory", "Overrides the base source directory in the generated symlinks"
   o.on "--help" do
     puts o
     exit
@@ -18,6 +18,5 @@ end
 
 files_dir, symlinks_dir = opts.arguments
 
-puts Plex::Symlinker::Operation.new(files_dir, symlinks_dir, virtual_files_base_dir: opts[:virtual_files_directory]).inspect
 Plex::Symlinker::Operation.new(files_dir, symlinks_dir, virtual_files_base_dir: opts[:virtual_files_directory]).create_symlinks
 

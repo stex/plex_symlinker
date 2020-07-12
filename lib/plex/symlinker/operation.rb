@@ -35,7 +35,7 @@ module Plex
           path = file.path.gsub(files_base_dir, virtual_files_base_dir)
           symlink_path = File.join(symlinks_base_dir, file.relative_symlink_path)
 
-          next if File.exist?(symlink_path)
+          next if File.symlink?(symlink_path)
 
           File.symlink(path, symlink_path)
           progress.increment

@@ -3,6 +3,7 @@ require "plex/symlinker/version"
 require "rubygems"
 require "bundler/setup"
 require "active_support/all"
+require "pathname"
 require "ruby-progressbar"
 require "taglib"
 

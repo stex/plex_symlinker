@@ -18,5 +18,5 @@ end
 
 files_dir, symlinks_dir = opts.arguments
 
-Plex::Symlinker::Operation.new(files_dir, symlinks_dir, virtual_files_base_dir: opts[:virtual_files_directory]).create_symlinks
+Plex::Symlinker::Operation.new(files_dir, symlinks_dir, virtual_files_base_dir: opts[:virtual_files_directory]).perform
 

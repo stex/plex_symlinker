@@ -1,21 +1,26 @@
 module Plex
   module Symlinker
     class Operation
-      attr_reader :files_base_dir, :symlinks_base_dir, :virtual_files_base_dir, :extension
+      attr_reader :files_base_dir, :symlinks_base_dir, :virtual_files_base_dir
 
-      def initialize(files_base_dir, symlinks_base_dir, extension: "m4b", virtual_files_base_dir: nil)
+      def initialize(files_base_dir, symlinks_base_dir, virtual_files_base_dir: nil)
         @files_base_dir = files_base_dir
         @symlinks_base_dir = symlinks_base_dir
         @virtual_files_base_dir = virtual_files_base_dir.presence || @files_base_dir
-        @extension = extension
       end
 
-      def files
-        Dir[File.join(files_base_dir, "**/*.#{extension}")].map(&AudioFile.method(:new))
+      def files(dir, extensions = FileTypes::AudioFile.registered_types.keys)
+        extensions.flat_map do |extension|
+          Dir[File.join(dir, "**/*.#{extension}")]
+        end
+      end
+
+      def audio_files
+        files(files_base_dir).map(&FileTypes::AudioFile.method(:from_path))
       end
 
       def symlinks
-        Dir[File.join(symlinks_base_dir, "**/*.#{extension}")].map(&Symlink.method(:new))
+        files(symlinks_base_dir).map(&Symlink.method(:new))
       end
 
       def perform
@@ -26,9 +31,9 @@ module Plex
       def create_symlinks
         puts "Creating new symlinks..."
 
-        progress = ProgressBar.create(total: files.size)
+        progress = ProgressBar.create(total: audio_files.size)
 
-        files.each do |file|
+        audio_files.each do |file|
           progress.title = "#{file.album_artist.truncate(20)}/#{file.album.truncate(20)}"
           FileUtils.mkdir_p(File.join(symlinks_base_dir, file.relative_symlink_dir))
 
@@ -52,7 +57,7 @@ module Plex
           unless File.exist?(current_target)
             File.delete(current_target)
           end
-        end 
+        end
       end
     end
   end

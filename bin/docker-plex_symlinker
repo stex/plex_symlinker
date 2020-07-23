@@ -4,4 +4,4 @@ echo "Creating target directory with current user permissions..."
 mkdir -p $2
 
 echo "Running plex_symlinker in Docker..."
-docker run -it --user "$(id -u):$(id -g)" --rm -v "$1":/app/source -v "$2":/app/target --env VIRTUAL_FILES_DIRECTORY="$1" sterexx/plex_symlinker
+docker run -it --user "$(id -u):$(id -g)" --rm -v "$1":/app/source -v "$2":/app/target --env SYMLINK_TARGET_DIR="$1" sterexx/plex_symlinker

@@ -29,7 +29,4 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "slop", "~> 4.8"
   spec.add_runtime_dependency "taglib-ruby", "~> 1.0"
   spec.add_runtime_dependency "zeitwerk", "~> 2.4"
-
-  spec.add_development_dependency "pry", "~> 0.13.1"
-  spec.add_development_dependency "standard", "~> 0.4"
 end

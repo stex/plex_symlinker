@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "plex/symlinker"
+require "plex_symlinker"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

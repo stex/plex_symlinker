@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "plex/symlinker"
+require "plex_symlinker"
 require "slop"
 
 opts = Slop.parse do |o|
-  o.string "--virtual-files-directory", "Overrides the base source directory in the generated symlinks"
+  o.string "--symlink-target-dir", "Overrides the base dir in symlink targets"
   o.on "--help" do
     puts o
     exit
@@ -16,7 +16,5 @@ if opts.arguments.size != 2
   fail ArgumentError, "Please provide at least source and target directory."
 end
 
-files_dir, symlinks_dir = opts.arguments
-
-Plex::Symlinker::Operation.new(files_dir, symlinks_dir, virtual_files_base_dir: opts[:virtual_files_directory]).perform
+PlexSymlinker::Operation.new(*opts.arguments, symlink_target_dir: opts[:symlink_target_dir]).perform
 

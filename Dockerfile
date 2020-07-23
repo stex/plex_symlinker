@@ -5,7 +5,7 @@ RUN apt-get update && \
 
 WORKDIR /app
 
-COPY ./lib/plex/symlinker/version.rb ./lib/plex/symlinker/version.rb
+COPY plex_symlinker ./lib/plex/symlinker/version.rb
 COPY ./Gemfile* ./
 COPY ./plex-symlinker.gemspec ./
 

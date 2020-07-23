@@ -1,19 +1,19 @@
-require_relative 'lib/plex/symlinker/version'
+require_relative "lib/plex_symlinker/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "plex-symlinker"
-  spec.version       = Plex::Symlinker::VERSION
+  spec.name          = "plex_symlinker"
+  spec.version       = PlexSymlinker::VERSION
   spec.authors       = ["Stefan Exner"]
   spec.email         = ["stex@sterex.de"]
 
   spec.summary       = "Summary"
   spec.description   = "Description"
-  spec.homepage      = "https://github.com/stex/plex-symlinker"
+  spec.homepage      = "https://github.com/stex/plex_symlinker"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/stex/plex-symlinker"
+  spec.metadata["source_code_uri"] = "https://github.com/stex/plex_symlinker"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -25,9 +25,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "activesupport", "~> 6.0"
-  spec.add_runtime_dependency "ruby-progressbar"
-  spec.add_runtime_dependency "slop"
-  spec.add_runtime_dependency "taglib-ruby"
+  spec.add_runtime_dependency "ruby-progressbar", "~> 1.10"
+  spec.add_runtime_dependency "slop", "~> 4.8"
+  spec.add_runtime_dependency "taglib-ruby", "~> 1.0"
+  spec.add_runtime_dependency "zeitwerk", "~> 2.4"
 
   spec.add_development_dependency "pry", "~> 0.13.1"
   spec.add_development_dependency "standard", "~> 0.4"

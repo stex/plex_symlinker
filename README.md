@@ -1,24 +1,60 @@
-# Plex::Symlinker
+# PlexSymlinker
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/plex/symlinker`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem allows creating a Plex-friendly folder structure with symlinks for your audio books.  
+All you need are audio files with correct tagging, the gem takes care of making Plex understand them without you having to change the way you're organising your files.
 
-TODO: Delete this and the text above, and describe your gem
+**The Problem**
+
+Most of my audio files are in apple's `m4b` format, leaving me with one file per book most of the times:
+
+    📁 audiobooks
+     ∟ 📁 author name
+        ∟ book1.m4b
+        ∟ book2.m4b
+
+The problem with this structure is that Plex' music agent doesn't quite understand it.  
+Even though the files are properly tagged with author, album, etc., Plex tends to create a giant
+album out of all the files inside - often with the first audio book as album name.
+
+What the Plex music agent expects is a structure like this:
+
+    📁 audiobooks
+     ∟ 📁 author name
+        ∟ 📁 Book 1
+           ∟ book1.m4b
+        ∟ 📁 Book 2
+           ∟ book2.m4b
+
+This would mean that I'd have to introduce single-file-directories into my structure which didn't really make
+sense for me - especially as I have a lot of "Hörspiele" (mostly german format of short audio books with multiple
+actors + music).
+
+**This gem's solution**
+
+`plex_symlinker` creates symlinks pointing to your actual audio files in exactly the structure Plex' music agent
+expects to find. It uses the embedded tags in your files to build it, so even one big directory with
+all your audio files in it would work as expected.
+
+Just point plex to the symlink directory instead of your actual files and you're good to go.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+There are 2 ways to install/use this gem:
 
-```ruby
-gem 'plex-symlinker'
+1. Install the gem on your local machine and run it directly
+
+```bash
+gem install plex-symlinker
 ```
 
-And then execute:
+As this gem makes use of `taglib-ruby`, you have to make sure that the necessary packages are installed on your machine.  
+Please refer to [robinst/taglib-ruby](https://github.com/robinst/taglib-ruby#installation) for more information.
 
-    $ bundle install
+2. Use the docker image
 
-Or install it yourself as:
-
-    $ gem install plex-symlinker
+A [docker image is available](https://hub.docker.com/repository/docker/sterexx/plex_symlinker) for this gem which includes
+all necessary dependencies and can be used out-of-the-box by mounting the necessary directories.  
+See below for examples.
 
 ## Usage
 
@@ -28,12 +64,11 @@ TODO: Write usage instructions here
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/plex-symlinker. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/plex-symlinker/blob/master/CODE_OF_CONDUCT.md).
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/stex]/plex_symlinker. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/plex-symlinker/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -41,4 +76,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Plex::Symlinker project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/plex-symlinker/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the PlexSymlinker project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/stex/plex-symlinker/blob/master/CODE_OF_CONDUCT.md).

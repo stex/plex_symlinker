@@ -1,11 +1,12 @@
 PATH
   remote: .
   specs:
-    plex-symlinker (0.1.0)
+    plex_symlinker (0.1.0)
       activesupport (~> 6.0)
-      ruby-progressbar
-      slop
-      taglib-ruby
+      ruby-progressbar (~> 1.10)
+      slop (~> 4.8)
+      taglib-ruby (~> 1.0)
+      zeitwerk (~> 2.4)
 
 GEM
   remote: https://rubygems.org/
@@ -20,7 +21,7 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.1.6)
     diff-lcs (1.4.4)
-    i18n (1.8.3)
+    i18n (1.8.4)
       concurrent-ruby (~> 1.0)
     method_source (1.0.0)
     minitest (5.14.1)
@@ -70,13 +71,13 @@ GEM
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.7.0)
-    zeitwerk (2.3.1)
+    zeitwerk (2.4.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  plex-symlinker!
+  plex_symlinker!
   pry (~> 0.13.1)
   rake (~> 12.0)
   rspec (~> 3.0)

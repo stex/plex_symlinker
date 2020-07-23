@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-echo "Creating target directory with current user permissions..."
-mkdir -p $2
-
-docker run -it --user "$(id -u):$(id -g)" --rm -v "$1":/app/source -v "$2":/app/target --env VIRTUAL_FILES_DIRECTORY="$1" symlinker

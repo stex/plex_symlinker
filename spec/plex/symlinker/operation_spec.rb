@@ -1,6 +1,6 @@
-require 'rspec'
+require "rspec"
 
-describe 'Plex::Symlinker::Operation' do
+describe "Plex::Symlinker::Operation" do
   before do
     # Do nothing
   end
@@ -9,9 +9,9 @@ describe 'Plex::Symlinker::Operation' do
     # Do nothing
   end
 
-  context 'when condition' do
-    it 'succeeds' do
-      pending 'Not implemented'
+  context "when condition" do
+    it "succeeds" do
+      pending "Not implemented"
     end
   end
 end

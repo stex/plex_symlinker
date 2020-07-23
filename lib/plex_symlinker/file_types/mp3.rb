@@ -1,6 +1,5 @@
 module PlexSymlinker
   module FileTypes
-
     # {
     #   "TDRC": "1968",
     #   "TIT2": "Seite B",
@@ -23,9 +22,9 @@ module PlexSymlinker
       tag_reader :track_number, "TRCK"
 
       def tags
-        @tags ||= TagLib::MPEG::File.open(path) do |file|
+        @tags ||= TagLib::MPEG::File.open(path) { |file|
           Hash[file.id3v2_tag.frame_list.map { |f| [f.frame_id, f.to_s] }]
-        end
+        }
       end
 
       def album_artist

@@ -4,17 +4,16 @@ require "bundler/setup"
 require "plex_symlinker"
 require "slop"
 
-opts = Slop.parse do |o|
+opts = Slop.parse { |o|
   o.string "--symlink-target-dir", "Overrides the base dir in symlink targets"
   o.on "--help" do
     puts o
     exit
   end
-end
+}
 
 if opts.arguments.size != 2
   fail ArgumentError, "Please provide at least source and target directory."
 end
 
 PlexSymlinker::Operation.new(*opts.arguments, symlink_target_dir: opts[:symlink_target_dir]).perform
-

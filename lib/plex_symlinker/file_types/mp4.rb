@@ -1,6 +1,5 @@
 module PlexSymlinker
   module FileTypes
-
     # => {"----:com.apple.iTunes:ALBUM ARTIST"=>"Walter Moers",
     #     "----:com.apple.iTunes:Encoding Params"=>"Nero AAC codec / Aug 6 2007",
     #     "----:com.apple.iTunes:PERFORMER"=>"Andreas Fröhlich",
@@ -32,9 +31,9 @@ module PlexSymlinker
       tag_reader :track_number, "trkn"
 
       def tags
-        @tags ||= TagLib::MP4::File.open(path) do |file|
+        @tags ||= TagLib::MP4::File.open(path) { |file|
           Hash[file.tag.item_map.to_a.map { |k, i| [k, i.to_string_list.first] }]
-        end
+        }
       end
 
       def album_artist

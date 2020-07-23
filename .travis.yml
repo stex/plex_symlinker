@@ -2,7 +2,7 @@
 services:
   - docker
 
-before_install:
+install:
   - docker build -t sterexx/plex_symlinker-dev -f Dockerfile.dev .
 
 script:

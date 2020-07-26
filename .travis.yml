@@ -3,8 +3,14 @@ services:
   - docker
 
 install:
-  - docker build -t sterexx/plex_symlinker-dev -f Dockerfile.dev .
+  - docker build -t "$DOCKER_HUB_REPOSITORY"-dev -f Dockerfile.dev .
 
 script:
-  - docker run -t sterexx/plex_symlinker-dev bundle exec standardrb
-  - docker run -t sterexx/plex_symlinker-dev bundle exec rake
+  - docker run -t "$DOCKER_HUB_REPOSITORY"-dev bundle exec standardrb
+  - docker run -t "$DOCKER_HUB_REPOSITORY"-dev bundle exec rake
+
+deploy:
+  provider: script
+  script: bin/docker-build
+  on:
+    branch: master

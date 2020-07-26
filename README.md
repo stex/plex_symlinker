@@ -64,6 +64,16 @@ See below for examples.
 
 ### Using the Docker image
 
+#### 1. Create the directory the symlinks should be placed in (if it doesn't exist yet)
+
+It's important that the directory exists (owned by your current user) before you mount it.
+
+```bash
+mkdir -p /path/to/symlink/dir
+```
+
+#### 2. Run the docker image
+
 Since the whole purpose of PlexSymlinker is to read a directory full of audio files and fill another directory
 with symlinks, we have to make sure the docker container has access to both of them.
 
@@ -73,16 +83,6 @@ the symlinks should be placed in as `/app/target`.
 💡 You also have to pass in the `SYMLINK_TARGET_DIR` environment variable. Since the gem only sees `/app/source` inside
 the docker container, it would point all symlinks there instead of the actual directory on your host machine. Just set it to
 the same directory that you mounted as `/app/source`.
-
-#### 1. Create the directory the symlinks should be placed in (if it doesn't exist yet)
-
-It's important that the directory exists (owned by your current user) before you mount it.
-
-```bash
-mkdir -p /path/to/symlink/dir
-```
-
-#### 2. Run the docker image**
 
 **MacOS**
 

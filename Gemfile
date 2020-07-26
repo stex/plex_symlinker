@@ -9,4 +9,3 @@ group :development do
   gem "pry", "~> 0.13.1"
   gem "standard", "~> 0.4"
 end
-

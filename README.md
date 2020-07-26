@@ -3,8 +3,6 @@
 This gem allows creating a Plex-friendly folder structure with symlinks for your audio books.  
 All you need are audio files with correct tagging, the gem takes care of making Plex understand them without you having to change the way you're organising your files.
 
-⬇️ If you're on Docker Hub, just scroll down to "Usage".
-
 **The Problem**
 
 Most of my audio files are in apple's `m4b` format, leaving me with one file per book most of the times:
@@ -56,7 +54,6 @@ Please refer to [robinst/taglib-ruby](https://github.com/robinst/taglib-ruby#ins
 
 A [docker image](https://hub.docker.com/r/sterexx/plex_symlinker) is available which includes
 all necessary dependencies and can be used out-of-the-box by mounting the necessary directories.  
-See below for examples.
 
 ## Usage
 
@@ -64,41 +61,7 @@ See below for examples.
 
 ### Using the Docker image
 
-#### 1. Create the directory the symlinks should be placed in (if it doesn't exist yet)
-
-It's important that the directory exists (owned by your current user) before you mount it.
-
-```bash
-mkdir -p /path/to/symlink/dir
-```
-
-#### 2. Run the docker image
-
-Since the whole purpose of PlexSymlinker is to read a directory full of audio files and fill another directory
-with symlinks, we have to make sure the docker container has access to both of them.
-
-When using the docker image, the audio files directory is expected to be mounted as `/app/source` and the directory
-the symlinks should be placed in as `/app/target`.
-
-💡 You also have to pass in the `SYMLINK_TARGET_DIR` environment variable. Since the gem only sees `/app/source` inside
-the docker container, it would point all symlinks there instead of the actual directory on your host machine. Just set it to
-the same directory that you mounted as `/app/source`.
-
-**MacOS**
-
-```bash
-docker run -it --rm -v /path/to/audiobooks:/app/source -v /path/to/symlink/dir:/app/target --env SYMLINK_TARGET_DIR=/path/to/audiobooks sterexx/plex_symlinker
-```
-
-**Linux**
-
-💡 Under Linux, you have to make sure to set your current user/group id with `--user "$(id -u):$(id -g)"` - otherwise, all the 
-generated symlinks/directories will be owned by the root user.
-Docker for mac/windows takes care of that for you automatically.
-
-```bash
-docker run -it --user "$(id -u):$(id -g)" --rm -v /path/to/audiobooks:/app/source -v /path/to/symlink/dir:/app/target --env SYMLINK_TARGET_DIR=/path/to/audiobooks sterexx/plex_symlinker
-```
+Please refer to [Docker Hub](https://hub.docker.com/r/sterexx/plex_symlinker) for instructions
 
 #### 3. Add a plex library for the symlink directory
 

@@ -1,7 +1,8 @@
 FROM ruby:slim
 
 RUN apt-get update && \
-        apt-get install -y libtag1-dev libtag-extras-dev g++ make
+        apt-get install -y libtag1-dev libtag-extras-dev g++ make && \
+        apt-get clean
 
 WORKDIR /app
 

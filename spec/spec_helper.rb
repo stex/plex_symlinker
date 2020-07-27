@@ -1,7 +1,7 @@
 require "bundler/setup"
 require "plex_symlinker"
 require "pathname"
-require 'rspec/its'
+require "rspec/its"
 
 module Helpers
   def spec_root

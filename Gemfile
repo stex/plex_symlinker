@@ -6,6 +6,7 @@ gemspec
 group :development do
   gem "rake", "~> 12.0"
   gem "rspec", "~> 3.0"
+  gem "rspec-its", "~> 1.3"
   gem "pry", "~> 0.13.1"
   gem "standard", "~> 0.4"
 end

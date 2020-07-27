@@ -19,16 +19,15 @@ module PlexSymlinker
     #     "©too"=>"Nero AAC codec / Aug 6 2007"}
 
     class Mp4 < AudioFile
-      tag_reader :sorting_album_artist, "soaa"
-      tag_reader :sorting_artist, "soar"
-      tag_reader :sorting_album, "soal"
+      tag_reader :sort_album_artist, "soaa"
+      tag_reader :sort_artist, "soar"
+      tag_reader :sort_album, "soal"
       tag_reader :album, "©alb"
       tag_reader :genre, "©gen"
       tag_reader :title, "©nam"
       tag_reader :year, "©day"
       tag_reader :artist, "©ART"
-      tag_reader :performer, "----:com.apple.iTunes:PERFORMER"
-      tag_reader :track_number, "trkn"
+      tag_reader :performer, "----:com.apple.iTunes:PERFORMER_NAME"
 
       def tags
         @tags ||= TagLib::MP4::File.open(path) { |file|

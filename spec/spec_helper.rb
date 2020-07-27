@@ -1,5 +1,17 @@
 require "bundler/setup"
 require "plex_symlinker"
+require "pathname"
+require 'rspec/its'
+
+module Helpers
+  def spec_root
+    Pathname.new(__dir__)
+  end
+
+  def resource_file(filename)
+    spec_root.join("resources", filename)
+  end
+end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -11,4 +23,6 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  config.include Helpers
 end

@@ -2,15 +2,10 @@
 services:
   - docker
 
-install:
-  - docker build -t "$DOCKER_HUB_REPOSITORY"-dev -f Dockerfile.dev .
-
-script:
-  - docker run -t "$DOCKER_HUB_REPOSITORY"-dev bundle exec standardrb
-  - docker run -t "$DOCKER_HUB_REPOSITORY"-dev bundle exec rake
-
+install: bin/ci-build-dev
+script: bin/ci-test
 deploy:
   provider: script
-  script: bin/docker-build
+  script: bin/ci-build-production
   on:
     branch: master

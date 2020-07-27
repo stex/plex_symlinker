@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+docker run -t "$DOCKER_HUB_REPOSITORY"-dev bundle exec standardrb
+docker run -t "$DOCKER_HUB_REPOSITORY"-dev bundle exec rake

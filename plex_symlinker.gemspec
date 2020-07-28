@@ -28,5 +28,4 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "ruby-progressbar", "~> 1.10"
   spec.add_runtime_dependency "slop", "~> 4.8"
   spec.add_runtime_dependency "taglib-ruby", "~> 1.0"
-  spec.add_runtime_dependency "zeitwerk", "~> 2.4"
 end

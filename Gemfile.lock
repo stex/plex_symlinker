@@ -6,7 +6,6 @@ PATH
       ruby-progressbar (~> 1.10)
       slop (~> 4.8)
       taglib-ruby (~> 1.0)
-      zeitwerk (~> 2.4)
 
 GEM
   remote: https://rubygems.org/

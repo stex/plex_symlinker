@@ -13,11 +13,15 @@ loader.eager_load
 module PlexSymlinker
   class Error < StandardError; end
 
-  def self.logger
-    @logger ||= Logger.new("/dev/null")
+  def self.output
+    @output ||= STDOUT
   end
 
-  def self.logger=(logger)
-    @logger = logger
+  def self.output=(val)
+    @output = val
+  end
+
+  def self.logger
+    @logger ||= Logger.new(output)
   end
 end

@@ -47,9 +47,7 @@ module PlexSymlinker
     # @return [Array<String>] The paths to all files with matching extensions within the given directory
     #
     def files(dir, extensions = FileTypes::AudioFile.registered_types.keys)
-      extensions.flat_map do |extension|
-        Dir[File.join(dir, "**/*.#{extension}")]
-      end
+      Dir[File.join(dir, "**/*.{#{extensions.join(",")}}")]
     end
 
     def audio_files
@@ -68,15 +66,17 @@ module PlexSymlinker
     def create_symlinks
       PlexSymlinker.logger.info "Creating new symlinks..."
 
-      progress = ProgressBar.create(total: audio_files.size)
+      progress = ProgressBar.create(total: audio_files.size, output: PlexSymlinker.output)
 
       audio_files.each do |file|
-        progress.title = "#{file.album_artist.truncate(20)}/#{file.album.truncate(20)}"
+        progress.log " --* #{file.album_artist}/#{file.album}..."
+
         FileUtils.mkdir_p(File.join(symlinks_base_dir, file.relative_symlink_dir))
 
-        path = file.path.gsub(files_base_dir, virtual_files_base_dir)
+        path = file.path.gsub(files_base_dir, symlink_target_dir)
         symlink_path = File.join(symlinks_base_dir, file.relative_symlink_path)
 
+        # If we already have a symlink, don't try to create it again.
         next if File.symlink?(symlink_path)
 
         File.symlink(path, symlink_path)

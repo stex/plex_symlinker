@@ -14,7 +14,7 @@ module Helpers
   end
 
   def resource_files
-    spec_root.join("resources").children
+    Dir[spec_root.join("resources", "**", "*.{#{PlexSymlinker::FileTypes::AudioFile.registered_types.keys.join(",")}}")]
   end
 end
 

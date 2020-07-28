@@ -14,6 +14,8 @@ opts = Slop.parse { |o|
 }
 
 fail ArgumentError, "Please provide at least source and target directory." if opts.arguments.size != 2
-PlexSymlinker.logger = Logger.new(opts[:log]) if opts[:log]
+if opts[:log]
+  PlexSymlinker.output = File.new(opts[:log], "w")
+end
 
 PlexSymlinker::Operation.new(*opts.arguments, symlink_target_dir: opts[:symlink_target_dir]).perform

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    plex_symlinker (0.1.0)
+    plex_symlinker (0.1.1)
       activesupport (~> 6.0)
       ruby-progressbar (~> 1.10)
       slop (~> 4.8)

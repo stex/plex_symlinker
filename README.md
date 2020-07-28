@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/plex_symlinker.svg)](https://badge.fury.io/rb/plex_symlinker) [![Build Status](https://travis-ci.org/Stex/plex_symlinker.svg?branch=master)](https://travis-ci.org/Stex/plex_symlinker)
+
 # PlexSymlinker
 
 This gem allows creating a Plex-friendly folder structure with symlinks for your audio books.  

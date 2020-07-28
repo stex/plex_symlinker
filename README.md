@@ -59,6 +59,24 @@ all necessary dependencies and can be used out-of-the-box by mounting the necess
 
 ### Using the gem executable
 
+#### 0. Make sure your files are properly tagged!
+
+At least the `album` and `album artist` fields have to set accordingly.
+
+But since you are planning to import those files into Plex which needs a lot more information,
+it would make sense to fill out all details you can provide.
+
+#### 1. Run the gem executable with source and target directory
+
+```bash
+plex_symlinker /path/to/audiobooks /path/to/symlinks
+```
+
+💡 If you ran PlexSymlinker before, you can just re-run it on the same directory again.
+It will automatically sync the symlinks against the actual files and even delete no longer existing files.
+
+#### 2. Create a Plex library pointing to the symlink directory
+
 ### Using the Docker image
 
 Please refer to [Docker Hub](https://hub.docker.com/r/sterexx/plex_symlinker) for instructions

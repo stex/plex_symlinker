@@ -78,3 +78,14 @@ will be owned by the root user. Docker for mac/windows takes care of that for yo
     docker run -it --user "$(id -u):$(id -g)" --rm -v /path/to/audiobooks:/app/source:ro -v /path/to/symlink/dir:/app/target --env SYMLINK_TARGET_DIR=/path/to/audiobooks sterexx/plex_symlinker
 
 ### 3. Create a Plex library pointing to the symlink directory
+
+
+There might be multiple ways to achieve a good audiobook setup, but for me (with properly tagged files and embedded artwork), the following one worked great:
+
+✅ Prefer local metadata  
+✅ Store track progress  
+✅ Artist Bios  
+- Genres -> Embedded Tags
+- Album Art -> Both Plex Music and Local Files
+- Scanner -> Plex Music
+- Agent -> Plex Music

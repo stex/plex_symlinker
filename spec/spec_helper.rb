@@ -2,6 +2,7 @@ require "bundler/setup"
 require "plex_symlinker"
 require "pathname"
 require "rspec/its"
+require "pry"
 
 module Helpers
   def spec_root
@@ -10,6 +11,10 @@ module Helpers
 
   def resource_file(filename)
     spec_root.join("resources", filename)
+  end
+
+  def resource_files
+    spec_root.join("resources").children
   end
 end
 

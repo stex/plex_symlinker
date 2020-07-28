@@ -66,7 +66,7 @@ module PlexSymlinker
     end
 
     def create_symlinks
-      puts "Creating new symlinks..."
+      PlexSymlinker.logger.info "Creating new symlinks..."
 
       progress = ProgressBar.create(total: audio_files.size)
 
@@ -87,13 +87,13 @@ module PlexSymlinker
     #
     # Removes all symlinks from the target folder that don't have an existing target any more
     #
+    # TODO: Remove empty directories as well
+    #
     def cleanup
-      puts "Removing invalid existing symlinks..."
+      PlexSymlinker.logger.info "Removing invalid existing symlinks..."
       symlinks.each do |link|
         current_target = link.target.gsub(symlink_target_dir, files_base_dir)
-        unless File.exist?(current_target)
-          File.delete(current_target)
-        end
+        File.delete(link.path) unless File.exist?(current_target)
       end
     end
   end

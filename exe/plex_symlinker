@@ -6,14 +6,14 @@ require "slop"
 
 opts = Slop.parse { |o|
   o.string "--symlink-target-dir", "Overrides the base dir in symlink targets"
+  o.string "--log", "Log output path"
   o.on "--help" do
     puts o
     exit
   end
 }
 
-if opts.arguments.size != 2
-  fail ArgumentError, "Please provide at least source and target directory."
-end
+fail ArgumentError, "Please provide at least source and target directory." if opts.arguments.size != 2
+PlexSymlinker.logger = Logger.new(opts[:log]) if opts[:log]
 
 PlexSymlinker::Operation.new(*opts.arguments, symlink_target_dir: opts[:symlink_target_dir]).perform

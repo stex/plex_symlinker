@@ -6,8 +6,18 @@ require "ruby-progressbar"
 require "taglib"
 require "zeitwerk"
 
-Zeitwerk::Loader.for_gem.setup
+loader = Zeitwerk::Loader.for_gem
+loader.setup
+loader.eager_load
 
 module PlexSymlinker
   class Error < StandardError; end
+
+  def self.logger
+    @logger ||= Logger.new("/dev/null")
+  end
+
+  def self.logger=(logger)
+    @logger = logger
+  end
 end

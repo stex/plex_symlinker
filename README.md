@@ -77,6 +77,16 @@ It will automatically sync the symlinks against the actual files and even delete
 
 #### 2. Create a Plex library pointing to the symlink directory
 
+There might be multiple ways to achieve a good audiobook setup, but for me (with properly tagged files and embedded artwork), the following one worked great:
+
+- [x] Prefer local metadata
+- [x] Store track progress
+- [x] Artist Bios
+- Genres -> Embedded Tags
+- Album Art -> Both Plex Music and Local Files
+- Scanner -> Plex Music
+- Agent -> Plex Music
+
 ### Using the Docker image
 
 Please refer to [Docker Hub](https://hub.docker.com/r/sterexx/plex_symlinker) for instructions
